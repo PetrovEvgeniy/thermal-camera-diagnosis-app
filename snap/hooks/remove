@@ -1,0 +1,34 @@
+#!/bin/sh -e
+
+echo "Uninstall hook triggered"
+
+# Remove the configuration files from the snap user data directory
+CONFIGDIR=$SNAP_USER_DATA/config
+
+if [ -d "$CONFIGDIR" ]; then
+  echo "Removing configuration files from $CONFIGDIR"
+  rm -rf $CONFIGDIR
+  if rm -rf "$CONFIGDIR"; then
+      echo "Directory $CONFIGDIR removed successfully"
+  else
+      echo "Failed to remove directory $CONFIGDIR"
+      exit 1 
+  fi
+fi
+
+# Remove the active configuration directory from the snap common directory
+ACTIVECONFIGDIR=$SNAP_COMMON/solutions/activeConfiguration/node-red-app
+
+if [ -d "$ACTIVECONFIGDIR" ]; then
+  echo "Removing active configuration directory from $ACTIVECONFIGDIR"
+
+  if rm -rf "$ACTIVECONFIGDIR"; then
+      echo "Directory $ACTIVECONFIGDIR removed successfully"
+  else
+      echo "Failed to remove directory $ACTIVECONFIGDIR"
+      exit 1 
+  fi
+
+else
+  echo "Active configuration directory does not exist at $ACTIVECONFIGDIR"
+fi

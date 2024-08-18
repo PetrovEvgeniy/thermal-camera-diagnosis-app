@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.boschrexroth.com/ctrlx-automation/ctrlx-core/apps/package-manifest/package-manifest.v1.1.schema.json",
+  "version": "1.0.0",
+  "id": "thermal-camera-diagnosis-app",
+  "configuration": {
+      "appDirectories": [
+          {
+              "name": "thermal-camera-diagnosis-app",
+              "description": "Thermal Camera Diagnosis App",
+              "icon": "bosch-ic-directory",
+              "scopes": [],
+              "copyOnLoad": true,
+              "writeProtected" : false
+          }
+      ]
+  },
+  "services": {
+    "proxyMapping": [
+      {
+        
+        "name": "node-red.web",
+        "url": "/tcda-node-red",
+        "binding": ":60999",
+        "options": [
+          {
+            "option": "websocket",
+            "value": ""
+          }
+        ]
+      }
+    ]
+  },
+  "menus": {
+    "overview": [
+      {
+        "id": "node-red-dashboard-settings",
+        "title": "Node-RED",
+        "icon": "bosch-ic-settings",
+        "link": "/tcda-node-red",
+        "target": "node-red-dashboard",
+        "permissions": []
+      }
+    ],
+    "sidebar": [
+      {
+        "id": "node-red-app-sidebar",
+        "title": "Node Red App",
+        "icon": "bosch-ic-battery-car-arrows-circle",
+        "items": [
+          {
+            "id": "node-red-dashboard-settings",
+            "title": "Node-RED Dashboard",
+            "link": "/tcda-node-red/ui",
+            "target": "node-red-dashboard",
+            "permissions": []
+          },
+          {
+            "id": "node-red-dashboard-settings",
+            "title": "Node-RED Editor",
+            "link": "/tcda-node-red",
+            "target": "node-red-dashboard",
+            "permissions": []
+          }
+        ]
+      }
+    ]
+  }
+}

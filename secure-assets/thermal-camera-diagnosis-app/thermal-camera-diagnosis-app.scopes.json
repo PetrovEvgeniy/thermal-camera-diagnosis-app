@@ -1,0 +1,3 @@
+{
+    "id": "thermal-camera-diagnosis-app", "required-permissions": ["logbook.diag.r", "rexroth-deviceadmin.web.licensemanager.r", "packagemanager.all.rw"]
+}

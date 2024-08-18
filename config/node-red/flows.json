@@ -1,0 +1,1165 @@
+[
+    {
+        "id": "c41a721297a51c5d",
+        "type": "tab",
+        "label": "Data Collector",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "596cc083aa0a99bd",
+        "type": "ctrlx-config",
+        "name": "basic",
+        "hostname": "localhost",
+        "debug": false
+    },
+    {
+        "id": "8619591cd4eb4f68",
+        "type": "ctrlx-config-subscription",
+        "device": "2d048973e79c33c6",
+        "name": "default_sub",
+        "publishIntervalMs": ""
+    },
+    {
+        "id": "2d048973e79c33c6",
+        "type": "ctrlx-config",
+        "name": "test1",
+        "hostname": "localhost",
+        "debug": false
+    },
+    {
+        "id": "ed5b8ac4bcbf7c01",
+        "type": "modbustcp-server",
+        "name": "FlirAX8",
+        "host": "192.168.1.50",
+        "port": "502",
+        "unit_id": "109",
+        "reconnecttimeout": "10"
+    },
+    {
+        "id": "cab0227b8b79ab39",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "5a48b31179b605fb",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "2f08f2424e81e171",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "cab0227b8b79ab39",
+        "order": 1,
+        "disp": false,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e72067fdfec87118",
+        "type": "ui_group",
+        "name": "Developer Exchange",
+        "tab": "c97156417c0b4d4d",
+        "order": 1,
+        "disp": true,
+        "width": "10",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3199d280f77c7260",
+        "type": "ui_group",
+        "name": "Control Buttons",
+        "tab": "c97156417c0b4d4d",
+        "order": 2,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "45573f38d5c07244",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false,
+        "alpnprotocol": ""
+    },
+    {
+        "id": "c97156417c0b4d4d",
+        "type": "ui_tab",
+        "name": "Dev Exchange",
+        "icon": "fa-exchange",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "52c44128ec9bb026",
+        "type": "inject",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 230,
+        "y": 300,
+        "wires": [
+            [
+                "2c539a80bee3bb27",
+                "e8e38283608fc4e8"
+            ]
+        ]
+    },
+    {
+        "id": "f7d2e2dc127ab7f4",
+        "type": "http request",
+        "z": "c41a721297a51c5d",
+        "name": "CAMERA 1: GET current raw thermal image",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "http://192.168.1.50/api/image/current?imgformat=FFF",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 850,
+        "y": 260,
+        "wires": [
+            [
+                "f87d7868acb0488b"
+            ]
+        ]
+    },
+    {
+        "id": "c49aca16da3c0c56",
+        "type": "inject",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 250,
+        "y": 120,
+        "wires": [
+            [
+                "cc582a7b105c950a",
+                "2fbd031d75f64614",
+                "c4d2622f38b2e6d8"
+            ]
+        ]
+    },
+    {
+        "id": "92dd6f68e5f6ae44",
+        "type": "comment",
+        "z": "c41a721297a51c5d",
+        "name": "Setup constants",
+        "info": "",
+        "x": 260,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "cc582a7b105c950a",
+        "type": "function",
+        "z": "c41a721297a51c5d",
+        "name": "set outputDirectory",
+        "func": "node.log(env.get(\"SNAP_COMMON\"));\n\n//TODO: ADD DATE directory\n\nlet outputDir = env.get(\"SNAP_COMMON\") + \"/solutions/activeConfiguration/thermal-camera-diagnosis-app/\"\n\nflow.set(\"OUTPUT_DIR\", outputDir);\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 120,
+        "wires": [
+            [
+                "4390269004d51603",
+                "3ef56da267b545af"
+            ]
+        ]
+    },
+    {
+        "id": "f87d7868acb0488b",
+        "type": "function",
+        "z": "c41a721297a51c5d",
+        "name": "Set up output information",
+        "func": "const fileRawData = msg.payload;\nconst now = new Date();\n\nconst year = now.getFullYear();\nconst month = String(now.getMonth() + 1).padStart(2,'0');\nconst day = String(now.getDate()).padStart(2,'0');\nconst hours = String(now.getHours()).padStart(2,'0');\nconst minutes = String(now.getMinutes()).padStart(2,'0');\nconst seconds = String(now.getSeconds()).padStart(2,'0');\n\nconst formattedDate = `${year}${month}${day}_${hours}${minutes}${seconds}`;\n\nconst fileName = formattedDate + \"cam1\" + \".fff\";\n\nmsg.fullPath = flow.get(\"OUTPUT_DIR_IMAGES\") + \"/\" + fileName;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 260,
+        "wires": [
+            [
+                "6287df3c506eeacc"
+            ]
+        ]
+    },
+    {
+        "id": "6287df3c506eeacc",
+        "type": "file",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "filename": "fullPath",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1380,
+        "y": 260,
+        "wires": [
+            [
+                "ebae9281fb071d2c"
+            ]
+        ]
+    },
+    {
+        "id": "ebae9281fb071d2c",
+        "type": "debug",
+        "z": "c41a721297a51c5d",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1580,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "2c539a80bee3bb27",
+        "type": "http request",
+        "z": "c41a721297a51c5d",
+        "d": true,
+        "name": "CAMERA 2: GET current raw thermal image",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "http://192.168.XXX.XXX/api/image/current?imgformat=FFF",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 850,
+        "y": 320,
+        "wires": [
+            [
+                "e38c4e4c4005375e"
+            ]
+        ]
+    },
+    {
+        "id": "e38c4e4c4005375e",
+        "type": "function",
+        "z": "c41a721297a51c5d",
+        "name": "Set up output information",
+        "func": "const fileRawData = msg.payload;\nconst now = new Date();\n\nconst year = now.getFullYear();\nconst month = String(now.getMonth() + 1).padStart(2, '0');\nconst day = String(now.getDate()).padStart(2, '0');\nconst hours = String(now.getHours()).padStart(2, '0');\nconst minutes = String(now.getMinutes()).padStart(2, '0');\nconst seconds = String(now.getSeconds()).padStart(2, '0');\n\nconst formattedDate = `${year}${month}${day}_${hours}${minutes}${seconds}`;\n\nconst fileName = formattedDate + \"cam2\" + \".fff\";\n\nmsg.fullPath = flow.get(\"OUTPUT_DIR_IMAGES\") + \"/\" + fileName;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 320,
+        "wires": [
+            [
+                "9525f80ff050d653"
+            ]
+        ]
+    },
+    {
+        "id": "9525f80ff050d653",
+        "type": "file",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "filename": "fullPath",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1380,
+        "y": 320,
+        "wires": [
+            [
+                "ebae9281fb071d2c"
+            ]
+        ]
+    },
+    {
+        "id": "d87e4f6890fb3362",
+        "type": "change",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "isCollectingData",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1390,
+        "y": 140,
+        "wires": [
+            [
+                "351226da784617d0"
+            ]
+        ]
+    },
+    {
+        "id": "83ae25270fe093c0",
+        "type": "change",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "isCollectingData",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1390,
+        "y": 180,
+        "wires": [
+            [
+                "1add894f81fa0ee0"
+            ]
+        ]
+    },
+    {
+        "id": "351226da784617d0",
+        "type": "change",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Discharging process activated",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1620,
+        "y": 140,
+        "wires": [
+            [
+                "82afadfa3f44fee9"
+            ]
+        ]
+    },
+    {
+        "id": "1add894f81fa0ee0",
+        "type": "change",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Discharging process deactivated",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1620,
+        "y": 180,
+        "wires": [
+            [
+                "82afadfa3f44fee9"
+            ]
+        ]
+    },
+    {
+        "id": "82afadfa3f44fee9",
+        "type": "debug",
+        "z": "c41a721297a51c5d",
+        "d": true,
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1800,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "e8e38283608fc4e8",
+        "type": "switch",
+        "z": "c41a721297a51c5d",
+        "name": "Check if the data collection is activated",
+        "property": "isCollectingData",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 470,
+        "y": 300,
+        "wires": [
+            [
+                "f7d2e2dc127ab7f4",
+                "2c539a80bee3bb27"
+            ]
+        ]
+    },
+    {
+        "id": "2fbd031d75f64614",
+        "type": "change",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "isCollectingData",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "28face7fdcd96530",
+        "type": "switch",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0.5",
+                "vt": "str"
+            },
+            {
+                "t": "lte",
+                "v": "0.5",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1190,
+        "y": 160,
+        "wires": [
+            [
+                "d87e4f6890fb3362"
+            ],
+            [
+                "83ae25270fe093c0"
+            ]
+        ]
+    },
+    {
+        "id": "677e942a2b43cf96",
+        "type": "modbustcp-read",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "topic": "max-temperature/box1",
+        "dataType": "HoldingRegister",
+        "adr": "4141",
+        "quantity": "2",
+        "rate": "0.5",
+        "rateUnit": "s",
+        "server": "ed5b8ac4bcbf7c01",
+        "ieeeType": "single",
+        "ieeeBE": "false",
+        "x": 250,
+        "y": 440,
+        "wires": [
+            [
+                "5fa1664472b1cb29"
+            ]
+        ]
+    },
+    {
+        "id": "5fa1664472b1cb29",
+        "type": "function",
+        "z": "c41a721297a51c5d",
+        "name": "Format data output",
+        "func": "let maxTempCelsius = msg.payload[0] - 273.15;\nlet maxTempCelsiusFormatted = `${maxTempCelsius.toFixed(2)}`;\n\nmsg.payload = maxTempCelsiusFormatted;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 440,
+        "wires": [
+            [
+                "58545ac08effd0fc",
+                "edce15637b815fc2"
+            ]
+        ]
+    },
+    {
+        "id": "49217f8ba1209926",
+        "type": "modbustcp-read",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "topic": "max-temperature/box2",
+        "dataType": "HoldingRegister",
+        "adr": "8141",
+        "quantity": "2",
+        "rate": "0.5",
+        "rateUnit": "s",
+        "server": "ed5b8ac4bcbf7c01",
+        "ieeeType": "single",
+        "ieeeBE": "false",
+        "x": 250,
+        "y": 500,
+        "wires": [
+            [
+                "5b9ae21ca38b92c2"
+            ]
+        ]
+    },
+    {
+        "id": "5b9ae21ca38b92c2",
+        "type": "function",
+        "z": "c41a721297a51c5d",
+        "name": "Format data output",
+        "func": "let maxTempCelsius = msg.payload[0] - 273.15;\nlet maxTempCelsiusFormatted = `${maxTempCelsius.toFixed(2)}`;\n\nmsg.payload = maxTempCelsiusFormatted;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 500,
+        "wires": [
+            [
+                "7792d99536fb2486",
+                "edce15637b815fc2"
+            ]
+        ]
+    },
+    {
+        "id": "58545ac08effd0fc",
+        "type": "ui_chart",
+        "z": "c41a721297a51c5d",
+        "name": "Time serries",
+        "group": "2f08f2424e81e171",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Box 1 Max Temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Loading...",
+        "dot": false,
+        "ymin": "20",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 730,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7792d99536fb2486",
+        "type": "ui_chart",
+        "z": "c41a721297a51c5d",
+        "name": "Time serries",
+        "group": "2f08f2424e81e171",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Box 2 Max temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Loading...",
+        "dot": false,
+        "ymin": "20",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 730,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "edce15637b815fc2",
+        "type": "join",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 830,
+        "y": 480,
+        "wires": [
+            [
+                "e1f27ec891867a00"
+            ]
+        ]
+    },
+    {
+        "id": "629e59bba5d5c3d5",
+        "type": "csv",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "timestamp, box1, box2",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1730,
+        "y": 480,
+        "wires": [
+            [
+                "d09600f265b2de45"
+            ]
+        ]
+    },
+    {
+        "id": "e1f27ec891867a00",
+        "type": "change",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload[\"timestamp\"]",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "payload[\"box1\"]",
+                "pt": "msg",
+                "to": "payload[\"max-temperature/box1\"]",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "payload[\"box2\"]",
+                "pt": "msg",
+                "to": "payload[\"max-temperature/box2\"]",
+                "tot": "msg",
+                "dc": true
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "max-temperatures",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 480,
+        "wires": [
+            [
+                "01d1a70d523cdb5a"
+            ]
+        ]
+    },
+    {
+        "id": "896e4f6ed3dd6a85",
+        "type": "ui_switch",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "label": "Collect Data",
+        "tooltip": "Collect raw thermal image data",
+        "group": "2f08f2424e81e171",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1030,
+        "y": 160,
+        "wires": [
+            [
+                "28face7fdcd96530",
+                "3e546265323b9524"
+            ]
+        ]
+    },
+    {
+        "id": "01d1a70d523cdb5a",
+        "type": "rbe",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload[\"timestamp\"]",
+        "topi": "topic",
+        "x": 1210,
+        "y": 480,
+        "wires": [
+            [
+                "474a834771705d43"
+            ]
+        ]
+    },
+    {
+        "id": "474a834771705d43",
+        "type": "switch",
+        "z": "c41a721297a51c5d",
+        "name": "Check if the data collection is activated",
+        "property": "isCollectingData",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1450,
+        "y": 480,
+        "wires": [
+            [
+                "629e59bba5d5c3d5"
+            ]
+        ]
+    },
+    {
+        "id": "d09600f265b2de45",
+        "type": "function",
+        "z": "c41a721297a51c5d",
+        "name": "Set up output information",
+        "func": "const fileRawData = msg.payload;\n\nmsg.fullPath = flow.get(\"LAST_CSV_FILE_PATH\");\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1930,
+        "y": 480,
+        "wires": [
+            [
+                "e1c79252df1c1e85"
+            ]
+        ]
+    },
+    {
+        "id": "e1c79252df1c1e85",
+        "type": "file",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "filename": "fullPath",
+        "filenameType": "msg",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 2140,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c4d2622f38b2e6d8",
+        "type": "change",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "LAST_CSV_FILE_PATH",
+                "pt": "flow",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c45300bb633c21a",
+        "type": "fs-ops-dir",
+        "z": "c41a721297a51c5d",
+        "name": "Get Directory Content",
+        "path": "OUTPUT_DIR_CSV",
+        "pathType": "flow",
+        "filter": "",
+        "filterType": "str",
+        "dir": "files",
+        "dirType": "msg",
+        "x": 1900,
+        "y": 40,
+        "wires": [
+            [
+                "168933db4b8ef631"
+            ]
+        ]
+    },
+    {
+        "id": "168933db4b8ef631",
+        "type": "function",
+        "z": "c41a721297a51c5d",
+        "name": "Check if the last csv file is known and set it",
+        "func": "const now = new Date();\n\nconst year = now.getFullYear();\nconst month = String(now.getMonth() + 1).padStart(2, '0');\nconst day = String(now.getDate()).padStart(2, '0');\nconst hours = String(now.getHours()).padStart(2, '0');\nconst minutes = String(now.getMinutes()).padStart(2, '0');\nconst seconds = String(now.getSeconds()).padStart(2, '0');\n\nconst formattedDate = `${year}${month}${day}_${hours}${minutes}${seconds}`;\n\nconst fileName = \"CAMERA_1\" + \".csv\";\n\n\nif (msg.files.length == 0){\n    msg.fullPath = flow.get(\"OUTPUT_DIR_CSV\") + \"/\" + formattedDate + fileName;\n    flow.set(\"LAST_CSV_FILE_PATH\", msg.fullPath)\n}\n\nif (msg.files.length > 0){\n    // Export capacity exceeded\n    msg.fullPath = flow.get(\"OUTPUT_DIR_CSV\") + \"/\" + formattedDate + fileName;\n    flow.set(\"LAST_CSV_FILE_PATH\", msg.fullPath)\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2190,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3ef56da267b545af",
+        "type": "function",
+        "z": "c41a721297a51c5d",
+        "name": "set outputDirectory CSV",
+        "func": "node.log(env.get(\"SNAP_COMMON\"));\n\nlet outputDir = flow.get(\"OUTPUT_DIR\")\n\nflow.set(\"OUTPUT_DIR_CSV\", outputDir + \"records\")\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4390269004d51603",
+        "type": "function",
+        "z": "c41a721297a51c5d",
+        "name": "set outputDirectory Images",
+        "func": "let outputDir = flow.get(\"OUTPUT_DIR\")\n\nflow.set(\"OUTPUT_DIR_IMAGES\", outputDir + \"images\")\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ee40b69dd334f65f",
+        "type": "exec",
+        "z": "c41a721297a51c5d",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Create records directory if it doesn't exist",
+        "x": 1560,
+        "y": 40,
+        "wires": [
+            [
+                "5c45300bb633c21a"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "3e546265323b9524",
+        "type": "function",
+        "z": "c41a721297a51c5d",
+        "name": "Configure exec command",
+        "func": "let recordsDir = flow.get(\"OUTPUT_DIR_CSV\");\n\nmsg.payload = `test -d ${recordsDir} || mkdir -p ${recordsDir}`;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1270,
+        "y": 40,
+        "wires": [
+            [
+                "ee40b69dd334f65f"
+            ]
+        ]
+    }
+]
