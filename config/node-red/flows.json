@@ -3,14 +3,14 @@
         "id": "c41a721297a51c5d",
         "type": "tab",
         "label": "Data Collector",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
     {
         "id": "a9c10a911df5cb3d",
         "type": "tab",
-        "label": "Accident Detection 1",
+        "label": "Anomaly Detection 1",
         "disabled": false,
         "info": "Deep learning approach, taking into account raw thermal images",
         "env": []
@@ -1215,46 +1215,6 @@
         "wires": []
     },
     {
-        "id": "574dd3af01960e5d",
-        "type": "inject",
-        "z": "c41a721297a51c5d",
-        "name": "",
-        "props": [
-            {
-                "p": "imagesPath",
-                "v": "OUTPUT_DIR_IMAGES",
-                "vt": "flow"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 230,
-        "y": 740,
-        "wires": [
-            [
-                "3287fa6eea13ba89"
-            ]
-        ]
-    },
-    {
-        "id": "3287fa6eea13ba89",
-        "type": "python-function",
-        "z": "c41a721297a51c5d",
-        "name": "",
-        "func": "import sys\nsys.path.append('/snap/thermal-camera-diagnosis-app/x1/config/python-code/')\nsys.path.append('/snap/thermal-camera-diagnosis-app/x1/usr/lib/python3/dist-packages/')\nsys.path.append('/snap/thermal-camera-diagnosis-app/x1/usr/lib/')\n\nimport requests\nimport base64\nimport cv2\nimport time\nimport flir_image_extractor\nimport numpy as np\n\nimagePath = msg[\"imagesPath\"] + \"/20240816_175257cam1.fff\"\n\nfir = flir_image_extractor.FlirImageExtractor()\n\nfir.process_image(imagePath)\nimg_raw = fir.get_thermal_np_normalized()  # Get the thermal image in normalized np format\nimg_raw = img_raw[:, :, :3]  # Keep only the first 3 channels (RGB)\n\n# Convert the ndarray to a byte array\n_, img_encoded = cv2.imencode('.png', img_raw)\nimg_bytes = img_encoded.tobytes()\n\n# Encode the byte array to base64\nimg_base64 = base64.b64encode(img_bytes).decode('utf-8')\n\n# Add the base64 string to the message\nmsg[\"payload\"] = img_base64\n\nreturn msg",
-        "outputs": 1,
-        "x": 440,
-        "y": 740,
-        "wires": [
-            [
-                "a2f2d0f51fed570e"
-            ]
-        ]
-    },
-    {
         "id": "cc582a7b105c950a",
         "type": "function",
         "z": "c41a721297a51c5d",
@@ -1276,19 +1236,575 @@
         ]
     },
     {
+        "id": "3287fa6eea13ba89",
+        "type": "python-function",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "func": "import sys\nsys.path.append('/snap/thermal-camera-diagnosis-app/x1/config/python-code/')\nsys.path.append('/snap/thermal-camera-diagnosis-app/x1/usr/lib/python3/dist-packages/')\nsys.path.append('/snap/thermal-camera-diagnosis-app/x1/usr/lib/')\n\nimport requests\nimport base64\nimport cv2\nimport time\nimport flir_image_extractor\nimport numpy as np\n\nimagePath = msg[\"runtimeImagesPath\"] + \"/DS1_CAM1.fff\"\n\nfir = flir_image_extractor.FlirImageExtractor()\n\nfir.process_image(imagePath)\nimg_raw = fir.get_thermal_image_cv()  # Get the thermal image in normalized np format\n#img_raw = img_raw[:, :, :3]  # Keep only the first 3 channels (RGB)\n\n# Convert the ndarray to a byte array\n_, img_encoded = cv2.imencode('.png', img_raw)\nimg_bytes = img_encoded.tobytes()\n\n# Encode the byte array to base64\nimg_base64 = base64.b64encode(img_bytes).decode('utf-8')\n\n# Add the base64 string to the message\nmsg[\"payload\"] = img_base64\n\nreturn msg",
+        "outputs": 1,
+        "x": 500,
+        "y": 580,
+        "wires": [
+            [
+                "a2f2d0f51fed570e"
+            ]
+        ]
+    },
+    {
         "id": "a2f2d0f51fed570e",
         "type": "image",
-        "z": "c41a721297a51c5d",
+        "z": "a9c10a911df5cb3d",
         "name": "Prossesed image preview",
-        "width": 160,
+        "width": "320",
         "data": "payload",
         "dataType": "msg",
         "thumbnail": false,
         "active": true,
         "pass": false,
         "outputs": 0,
-        "x": 710,
-        "y": 740,
+        "x": 790,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "5b1afb5d08a7e6e7",
+        "type": "inject",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3.20",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 340,
+        "wires": [
+            [
+                "fc9e90afbe55f401",
+                "c81573f8c9aad079"
+            ]
+        ]
+    },
+    {
+        "id": "0bd9dbb5f2cb9d9c",
+        "type": "http request",
+        "z": "a9c10a911df5cb3d",
+        "name": "CAMERA 1: GET current raw thermal image",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "http://192.168.1.50/api/image/current?imgformat=FFF",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 730,
+        "y": 300,
+        "wires": [
+            [
+                "0cd05708a3e82bfa"
+            ]
+        ]
+    },
+    {
+        "id": "0cd05708a3e82bfa",
+        "type": "function",
+        "z": "a9c10a911df5cb3d",
+        "name": "Set up output information",
+        "func": "const fileRawData = msg.payload;\n\nconst fileName = \"DS1_CAM1.fff\";\n\nmsg.fullPath = flow.get(\"OUTPUT_DIR_RUN\") + \"/\" + fileName;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 300,
+        "wires": [
+            [
+                "d574a45eaa654905"
+            ]
+        ]
+    },
+    {
+        "id": "d574a45eaa654905",
+        "type": "file",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "filename": "fullPath",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1260,
+        "y": 300,
+        "wires": [
+            [
+                "9586a1748e4c3891",
+                "49906f4e4d7ba918"
+            ]
+        ]
+    },
+    {
+        "id": "fc9e90afbe55f401",
+        "type": "http request",
+        "z": "a9c10a911df5cb3d",
+        "d": true,
+        "name": "CAMERA 2: GET current raw thermal image",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": "ignore",
+        "url": "http://192.168.XXX.XXX/api/image/current?imgformat=FFF",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 730,
+        "y": 360,
+        "wires": [
+            [
+                "4684c371d3a52dae"
+            ]
+        ]
+    },
+    {
+        "id": "4684c371d3a52dae",
+        "type": "function",
+        "z": "a9c10a911df5cb3d",
+        "name": "Set up output information",
+        "func": "const fileRawData = msg.payload;\n\nconst fileName = \"DS1_CAM2.fff\";\n\nmsg.fullPath = flow.get(\"OUTPUT_DIR_RUN\") + \"/\" + fileName;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1050,
+        "y": 360,
+        "wires": [
+            [
+                "2e852024e455239d"
+            ]
+        ]
+    },
+    {
+        "id": "2e852024e455239d",
+        "type": "file",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "filename": "fullPath",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1260,
+        "y": 360,
+        "wires": [
+            [
+                "49906f4e4d7ba918"
+            ]
+        ]
+    },
+    {
+        "id": "c81573f8c9aad079",
+        "type": "switch",
+        "z": "a9c10a911df5cb3d",
+        "name": "Check if the anomaly detection is activated",
+        "property": "isDetectingAnomalies",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 370,
+        "y": 340,
+        "wires": [
+            [
+                "0bd9dbb5f2cb9d9c",
+                "fc9e90afbe55f401"
+            ]
+        ]
+    },
+    {
+        "id": "7f36f35880e9c66e",
+        "type": "inject",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "8ba8f8e3249db5d0",
+                "2f2601877143d3d0"
+            ]
+        ]
+    },
+    {
+        "id": "8e317eb32de8cfd3",
+        "type": "comment",
+        "z": "a9c10a911df5cb3d",
+        "name": "Setup constants",
+        "info": "",
+        "x": 120,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "ab187a5d73b91dcd",
+        "type": "change",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "isDetectingAnomalies",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1270,
+        "y": 100,
+        "wires": [
+            [
+                "8af72f0d757684f8"
+            ]
+        ]
+    },
+    {
+        "id": "56039370ce9f619e",
+        "type": "change",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "isDetectingAnomalies",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1270,
+        "y": 140,
+        "wires": [
+            [
+                "9c78b449fdde8050"
+            ]
+        ]
+    },
+    {
+        "id": "8af72f0d757684f8",
+        "type": "change",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Anomaly Detection activated",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1500,
+        "y": 100,
+        "wires": [
+            [
+                "c410ce1a5ce1cbea"
+            ]
+        ]
+    },
+    {
+        "id": "9c78b449fdde8050",
+        "type": "change",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Anomaly Detection deactivated",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1500,
+        "y": 140,
+        "wires": [
+            [
+                "c410ce1a5ce1cbea"
+            ]
+        ]
+    },
+    {
+        "id": "c410ce1a5ce1cbea",
+        "type": "debug",
+        "z": "a9c10a911df5cb3d",
+        "d": true,
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1700,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "69bee95463d150f0",
+        "type": "switch",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0.5",
+                "vt": "str"
+            },
+            {
+                "t": "lte",
+                "v": "0.5",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1050,
+        "y": 120,
+        "wires": [
+            [
+                "ab187a5d73b91dcd"
+            ],
+            [
+                "56039370ce9f619e"
+            ]
+        ]
+    },
+    {
+        "id": "41d39c09ecc60946",
+        "type": "ui_switch",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "label": "Anomaly Detection",
+        "tooltip": "Collect raw thermal image data",
+        "group": "2f08f2424e81e171",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 890,
+        "y": 120,
+        "wires": [
+            [
+                "69bee95463d150f0"
+            ]
+        ]
+    },
+    {
+        "id": "236b4e281fe83e3c",
+        "type": "function",
+        "z": "a9c10a911df5cb3d",
+        "name": "set outputDirectory Runtime Images",
+        "func": "let outputDir = flow.get(\"OUTPUT_DIR\")\n\nflow.set(\"OUTPUT_DIR_RUN\", outputDir + \"runtime\")\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2f2601877143d3d0",
+        "type": "function",
+        "z": "a9c10a911df5cb3d",
+        "name": "set outputDirectory",
+        "func": "\n\nlet outputDir = env.get(\"SNAP_COMMON\") + \"/solutions/activeConfiguration/thermal-camera-diagnosis-app/\"\n\nflow.set(\"OUTPUT_DIR\", outputDir);\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 120,
+        "wires": [
+            [
+                "236b4e281fe83e3c"
+            ]
+        ]
+    },
+    {
+        "id": "8ba8f8e3249db5d0",
+        "type": "change",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "isDetectingAnomalies",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6dc0215f73fb322b",
+        "type": "link in",
+        "z": "a9c10a911df5cb3d",
+        "name": "link in 1",
+        "links": [
+            "9586a1748e4c3891"
+        ],
+        "x": 55,
+        "y": 580,
+        "wires": [
+            [
+                "39439e546952c7a7"
+            ]
+        ]
+    },
+    {
+        "id": "9586a1748e4c3891",
+        "type": "link out",
+        "z": "a9c10a911df5cb3d",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "6dc0215f73fb322b"
+        ],
+        "x": 1605,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "39439e546952c7a7",
+        "type": "change",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "runtimeImagesPath",
+                "pt": "msg",
+                "to": "OUTPUT_DIR_RUN",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 220,
+        "y": 580,
+        "wires": [
+            [
+                "3287fa6eea13ba89"
+            ]
+        ]
+    },
+    {
+        "id": "49906f4e4d7ba918",
+        "type": "debug",
+        "z": "a9c10a911df5cb3d",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1460,
+        "y": 320,
         "wires": []
     }
 ]

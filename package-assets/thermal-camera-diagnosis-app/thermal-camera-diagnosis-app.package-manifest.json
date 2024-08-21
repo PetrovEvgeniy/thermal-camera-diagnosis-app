@@ -58,7 +58,7 @@
             "id": "node-red-dashboard-settings",
             "title": "Node-RED Editor",
             "link": "/tcda-node-red",
-            "target": "node-red-dashboard",
+            "target": "node-red-editor",
             "permissions": []
           }
         ]
