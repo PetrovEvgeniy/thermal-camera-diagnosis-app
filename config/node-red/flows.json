@@ -8,6 +8,14 @@
         "env": []
     },
     {
+        "id": "a9c10a911df5cb3d",
+        "type": "tab",
+        "label": "Accident Detection 1",
+        "disabled": false,
+        "info": "Deep learning approach, taking into account raw thermal images",
+        "env": []
+    },
+    {
         "id": "596cc083aa0a99bd",
         "type": "ctrlx-config",
         "name": "basic",
@@ -267,9 +275,9 @@
         "y": 120,
         "wires": [
             [
-                "cc582a7b105c950a",
                 "2fbd031d75f64614",
-                "c4d2622f38b2e6d8"
+                "c4d2622f38b2e6d8",
+                "cc582a7b105c950a"
             ]
         ]
     },
@@ -282,27 +290,6 @@
         "x": 260,
         "y": 40,
         "wires": []
-    },
-    {
-        "id": "cc582a7b105c950a",
-        "type": "function",
-        "z": "c41a721297a51c5d",
-        "name": "set outputDirectory",
-        "func": "node.log(env.get(\"SNAP_COMMON\"));\n\n//TODO: ADD DATE directory\n\nlet outputDir = env.get(\"SNAP_COMMON\") + \"/solutions/activeConfiguration/thermal-camera-diagnosis-app/\"\n\nflow.set(\"OUTPUT_DIR\", outputDir);\n\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 470,
-        "y": 120,
-        "wires": [
-            [
-                "4390269004d51603",
-                "3ef56da267b545af"
-            ]
-        ]
     },
     {
         "id": "f87d7868acb0488b",
@@ -1161,5 +1148,147 @@
                 "ee40b69dd334f65f"
             ]
         ]
+    },
+    {
+        "id": "9ac9ef375cb83902",
+        "type": "inject",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 680,
+        "wires": [
+            [
+                "9de9edb5c8be3242"
+            ]
+        ]
+    },
+    {
+        "id": "9de9edb5c8be3242",
+        "type": "function",
+        "z": "c41a721297a51c5d",
+        "name": "function 1",
+        "func": "msg.payload = env.get(\"SNAP\") + \"/config/python-code/\"\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 680,
+        "wires": [
+            [
+                "56b96a109511b180"
+            ]
+        ]
+    },
+    {
+        "id": "56b96a109511b180",
+        "type": "debug",
+        "z": "c41a721297a51c5d",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "574dd3af01960e5d",
+        "type": "inject",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "props": [
+            {
+                "p": "imagesPath",
+                "v": "OUTPUT_DIR_IMAGES",
+                "vt": "flow"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 230,
+        "y": 740,
+        "wires": [
+            [
+                "3287fa6eea13ba89"
+            ]
+        ]
+    },
+    {
+        "id": "3287fa6eea13ba89",
+        "type": "python-function",
+        "z": "c41a721297a51c5d",
+        "name": "",
+        "func": "import sys\nsys.path.append('/snap/thermal-camera-diagnosis-app/x1/config/python-code/')\nsys.path.append('/snap/thermal-camera-diagnosis-app/x1/usr/lib/python3/dist-packages/')\nsys.path.append('/snap/thermal-camera-diagnosis-app/x1/usr/lib/')\n\nimport requests\nimport base64\nimport cv2\nimport time\nimport flir_image_extractor\nimport numpy as np\n\nimagePath = msg[\"imagesPath\"] + \"/20240816_175257cam1.fff\"\n\nfir = flir_image_extractor.FlirImageExtractor()\n\nfir.process_image(imagePath)\nimg_raw = fir.get_thermal_np_normalized()  # Get the thermal image in normalized np format\nimg_raw = img_raw[:, :, :3]  # Keep only the first 3 channels (RGB)\n\n# Convert the ndarray to a byte array\n_, img_encoded = cv2.imencode('.png', img_raw)\nimg_bytes = img_encoded.tobytes()\n\n# Encode the byte array to base64\nimg_base64 = base64.b64encode(img_bytes).decode('utf-8')\n\n# Add the base64 string to the message\nmsg[\"payload\"] = img_base64\n\nreturn msg",
+        "outputs": 1,
+        "x": 440,
+        "y": 740,
+        "wires": [
+            [
+                "a2f2d0f51fed570e"
+            ]
+        ]
+    },
+    {
+        "id": "cc582a7b105c950a",
+        "type": "function",
+        "z": "c41a721297a51c5d",
+        "name": "set outputDirectory",
+        "func": "node.log(env.get(\"SNAP_COMMON\"));\n\n//TODO: ADD DATE directory\n\nlet outputDir = env.get(\"SNAP_COMMON\") + \"/solutions/activeConfiguration/thermal-camera-diagnosis-app/\"\n\nflow.set(\"OUTPUT_DIR\", outputDir);\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 120,
+        "wires": [
+            [
+                "4390269004d51603",
+                "3ef56da267b545af"
+            ]
+        ]
+    },
+    {
+        "id": "a2f2d0f51fed570e",
+        "type": "image",
+        "z": "c41a721297a51c5d",
+        "name": "Prossesed image preview",
+        "width": 160,
+        "data": "payload",
+        "dataType": "msg",
+        "thumbnail": false,
+        "active": true,
+        "pass": false,
+        "outputs": 0,
+        "x": 710,
+        "y": 740,
+        "wires": []
     }
 ]

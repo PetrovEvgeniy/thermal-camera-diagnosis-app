@@ -5,8 +5,9 @@
 if [ -z "$PORT" ]; then PORT=60999; fi
 export PORT
 
-# Set the PATH to include the 7zz directory
-export PATH="/snap/node-red-app/x1/bin/:$PATH"
+# Set the PATH to include the 7zz directory and the additional directories
+export PATH="/snap/thermal-camera-diagnosis-app/x1/bin/:/snap/thermal-camera-diagnosis-app/x1/usr/lib/python3/dist-packages:/snap/thermal-camera-diagnosis-app/x1/config/python-code/:$PATH"
+
 
 # Set the default NodeRED user directory
 UNLICENSED_USERDIR=$SNAP_USER_DATA/unlicensed/config/node-red

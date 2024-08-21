@@ -118,7 +118,9 @@ parts:
             npm $npm_args install node-red-contrib-loop@1.0.1
             npm $npm_args install node-red-contrib-full-msg-json-schema-validation@1.1.0
             npm $npm_args install node-red-contrib-modbustcp@1.2.3
-            
+            npm $npm_args install node-red-contrib-python-function@0.0.5    
+            npm $npm_args install node-red-contrib-image-output@0.6.4 
+
             # modify node_modules
             find $SNAPCRAFT_PART_INSTALL -type f -name '*.js.swp' -delete
             find $SNAPCRAFT_PART_INSTALL/lib/node_modules -type d -name test -prune -exec rm -rf {} \;
@@ -144,6 +146,13 @@ parts:
             find $SNAPCRAFT_PART_INSTALL/lib/node_modules -type f -iname .gitignore -exec rm -f {} \;
             find $SNAPCRAFT_PART_INSTALL/lib/node_modules -type f -iname "*~" -exec rm -f {} \;
 
+    exiftool:
+        plugin: dump
+        source:
+            - to amd64: ./snap/local/packages/Image-ExifTool-12.92.tar.gz
+            - to arm64: ./snap/local/packages/Image-ExifTool-12.92.tar.gz
+        organize:
+            "*": bin/
     7zip:
         plugin: dump
         source:
@@ -151,7 +160,31 @@ parts:
             - to arm64: ./snap/local/packages/7z2301-linux-arm64.tar.xz
         organize:
             "*": bin/
-    
+
+    python-dependencies:
+        plugin: python
+        python-packages: 
+            - requests
+            - numpy
+            - matplotlib
+            - pandas
+            - Pillow
+            - opencv-contrib-python 
+        build-packages:
+            - python3-dev
+            - build-essential
+            - libatlas-base-dev
+            - libblas-dev
+            - liblapack-dev
+        stage-packages:
+            - libatlas-base-dev
+            - libgl1
+            - libglvnd0
+            - libglx0
+            - libice6
+            - libsm6
+
+
     dump-config:
         plugin: dump
         source: ./config
