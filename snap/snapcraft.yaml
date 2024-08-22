@@ -163,13 +163,24 @@ parts:
 
     python-dependencies:
         plugin: python
+        source: .
+        build-environment:
+            - PIP_EXTRA_INDEX_URL: https://download.pytorch.org/whl/cpu
         python-packages: 
             - requests
             - numpy
             - matplotlib
             - pandas
             - Pillow
-            - opencv-contrib-python 
+            - opencv-contrib-python
+            - anomalib
+            - openvino
+            - torch==2.3.1+cpu
+            - torchvision==0.18.1+cpu
+            - lightning
+            - imgaug
+            - kornia
+            - scikit-learn
         build-packages:
             - python3-dev
             - build-essential
@@ -183,8 +194,9 @@ parts:
             - libglx0
             - libice6
             - libsm6
-
-
+            - libgomp1
+            - ocl-icd-opencl-dev
+            
     dump-config:
         plugin: dump
         source: ./config

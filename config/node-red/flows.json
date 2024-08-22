@@ -1806,5 +1806,65 @@
         "x": 1460,
         "y": 320,
         "wires": []
+    },
+    {
+        "id": "4043d56331d2a64b",
+        "type": "python-function",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "func": "import sys\nsys.path.append('/snap/thermal-camera-diagnosis-app/x1/config/python-code/')\nsys.path.append('/snap/thermal-camera-diagnosis-app/x1/usr/lib/python3/dist-packages/')\nsys.path.append('/snap/thermal-camera-diagnosis-app/x1/usr/lib/')\n\nfrom anomalib.deploy import OpenVINOInferencer\n\nreturn msg",
+        "outputs": 1,
+        "x": 420,
+        "y": 680,
+        "wires": [
+            [
+                "ce859409a072d61e"
+            ]
+        ]
+    },
+    {
+        "id": "ce859409a072d61e",
+        "type": "debug",
+        "z": "a9c10a911df5cb3d",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "7684935223d3df84",
+        "type": "inject",
+        "z": "a9c10a911df5cb3d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 680,
+        "wires": [
+            [
+                "4043d56331d2a64b"
+            ]
+        ]
     }
 ]
