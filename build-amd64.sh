@@ -9,5 +9,3 @@ snapcraft clean --destructive-mode
 rm -rf ./build
 
 
-#TODO: Remove before push
-mv *.snap /media/sf_shared/21.08.2024

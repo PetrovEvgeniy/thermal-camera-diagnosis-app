@@ -44,7 +44,7 @@
     "sidebar": [
       {
         "id": "node-red-app-sidebar",
-        "title": "Node Red App",
+        "title": "Thermal Camera Diagnosis App",
         "icon": "bosch-ic-battery-car-arrows-circle",
         "items": [
           {

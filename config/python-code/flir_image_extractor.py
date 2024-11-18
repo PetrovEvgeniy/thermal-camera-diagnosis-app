@@ -31,7 +31,7 @@ class FlirImageExtractor:
         self.thermal_suffix = "_thermal.png"
         self.default_distance = 1.0
         self.min_temp_range = 10
-        self.max_temp_range = 80
+        self.max_temp_range = 90
 
         # valid for PNG thermal images
         self.use_thumbnail = False
@@ -64,10 +64,7 @@ class FlirImageExtractor:
             self.use_thumbnail = True
             self.fix_endian = False
 
-       # self.rgb_image_np = self.extract_embedded_image()
         self.thermal_image_np = self.extract_thermal_image()
-        self.thermal_image_cv = self.get_thermal_image_cv()
-        self.thermal_image = self.get_thermal_image()
 
     def get_image_type(self):
         """
@@ -276,11 +273,11 @@ class FlirImageExtractor:
         :return:
         """
         #rgb_np = self.get_rgb_np()
-        thermal_np = self.extract_thermal_image()
+        thermal_np = self.get_thermal_np()
 
         
         min_val = 10
-        max_val = 80
+        max_val = 90
 
 
         #img_visual = Image.fromarray(rgb_np)
