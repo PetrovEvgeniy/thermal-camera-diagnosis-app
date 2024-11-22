@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-echo "Install hook triggered"
-
-# Check if node-red directory exists
-if [ ! -d "$SNAP_COMMON/node-red/" ]; then
-    echo "Creating directory $SNAP_COMMON/node-red..."
-    mkdir -p $SNAP_COMMON/node-red
-fi
