@@ -32,7 +32,7 @@ The repository is organized into the following directories:
 - **Anomaly Detection Models**: Integration of state-of-the-art methods like PaDiM, PatchCore, and Isolation Forest.
 - **Data Preprocessing Tools**: Automated scripts to process thermal images for model training.
 
-## Setup & Usage 🚀
+## 🚀Setup & Usage 
 
 1. **Clone the Repository**:
    ```bash
