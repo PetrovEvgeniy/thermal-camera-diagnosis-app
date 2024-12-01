@@ -18,13 +18,13 @@ The repository is organized into the following directories:
 - **Description**: Includes Jupyter notebooks and scripts for training, evaluating, and validating machine learning models for anomaly detection.
 - **Contents**:
   - Datasets used for laboratory and industrial experiments.
-  - Scripts for preprocessing thermal images and generating synthetic anomalies.
   - Implementation of anomaly detection algorithms (e.g., PaDiM, PatchCore, iForest).
 
 ### 3. **referenced** 📂
 - **Description**: Contains all the referenced scripts and supplementary files used throughout the project.
 - **Contents**:
-  - Supporting scripts for data collection and preprocessing.
+  - Supporting scripts for data collection.
+  - Scripts for preprocessing thermal images and generating synthetic anomalies.
   - Any other files (such as masks) referenced in the main experiments.
 
 ## 🌟Features 
